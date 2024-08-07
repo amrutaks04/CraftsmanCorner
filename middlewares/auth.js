@@ -9,7 +9,6 @@ const auth =(req,res,next)=>{
     if(!token) return res.status(401).json({error:"Token required"});
     try{
         const decoded = jwt.verify(token,"secret_key");
-        console.log(decoded);
         req.authId = decoded.authId;
         req.role = decoded.role;
         next();

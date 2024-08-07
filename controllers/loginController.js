@@ -1,5 +1,4 @@
 const Login = require('../models/loginModel');
-const Vendor = require('../models/vendorModel');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -19,7 +18,6 @@ const register = async (req, res) => {
             vendorName:role=='vendor'?vendorName:undefined,
             vendorAddress:role=='vendor'?vendorAddress:undefined,
             vendorLicense:role=='vendor'?vendorLicense:undefined,
-
         })
         if (registerDetails) {
             return res.status(200).json({ message: 'Registration successful' });

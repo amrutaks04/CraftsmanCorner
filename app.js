@@ -26,6 +26,7 @@ app.use('/product',productRoute);
 app.use('/user',userRoute);
 app.use('/cart',wishlistRoute);
 
-app.listen(3000,()=>{
-console.log("Connected to port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT,()=>{
+console.log(`Connected to port ${PORT}`);
 })

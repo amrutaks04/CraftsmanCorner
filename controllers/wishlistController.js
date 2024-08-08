@@ -1,12 +1,13 @@
 const Wishlist = require('../models/wishlistModel');
 const Product = require('../models/productModel');
 
+
 const addToCart = async (req, res) => {
     try {
         const id = req.authId;
         const role = req.role;
         if(role=='user'){
-            const cart = await Wishlist.findOne({ user_id:id});
+            const cart = await Wishlist.findOne({ user_id: id  });
             if (cart) {
                 const index = cart.products.findIndex(products => products.product_id === req.body.products.product_id);
                 if (index != -1) {
@@ -17,7 +18,7 @@ const addToCart = async (req, res) => {
                     })
                 }
                 else {
-                    const updateCart = await Wishlist.findOneAndUpdate({ user_id:id }, {
+                    const updateCart = await Wishlist.findOneAndUpdate({ user_id: id  }, {
                         $push: {
                             products: req.body.products
                         }
@@ -25,25 +26,26 @@ const addToCart = async (req, res) => {
     
                     return res.status(200).json({
                         message: "updated"
-                    });
+                    })
                 }
             }
             else {
                 const addCart = await Wishlist.create({
-                    user_id:id,
+                    user_id: id ,
                     products: req.body.products
                 })
                 return res.status(200).json({
                     message: "added"
                 })
             }
-        }
-        return res.status(404).json({message:'This is not a user'});
+    }
+    return res.status(404).json({message:'This is not a user'});
 
     } catch (err) {
         console.log(err);
     }
 }
+
 
 const getCart = async (req, res) => {
     try {
@@ -53,13 +55,13 @@ const getCart = async (req, res) => {
             
         const userFound = await Wishlist.findOne({ user_id: id });
         if (!userFound) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'Product not found' });
         }
         let cartArray = [];
         let total =0;
         for (let i = 0; i < userFound.products.length; i++) {
             const cart = userFound.products[i];
-            const productDetail = await Product.findOne({ id: cart.product_id });
+            const productDetail = await Product.findOne({ productId: cart.product_id });
             if (productDetail) {
                 const subTotal = productDetail.price *cart.quantity;
                 cartArray.push({
@@ -67,12 +69,14 @@ const getCart = async (req, res) => {
                     description: productDetail.productDes,
                     price: productDetail.price,
                     quantity: cart.quantity,
-                    subTotal:subTotal
+                    subTotal:subTotal,
+                    vendorId:productDetail.vendorId
                 })
               total+=subTotal;
             }
         }
        let totalArray ={cartArray,total};
+       console.log(totalArray)
         return res.status(200).json(totalArray);
         }
         return res.status(404).json({message:'This is not a user'});
@@ -90,7 +94,7 @@ const deleteProduct = async (req, res) => {
         if(role=='user'){
             const userFound = await Wishlist.findOne({ user_id:id });
             if (!userFound) {
-                return res.status(404).json({ message: "user not found" });
+                return res.status(404).json({ message: "Product not found" });
             }
     else{   
             if(userFound.products.length<=1){

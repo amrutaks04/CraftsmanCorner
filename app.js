@@ -6,6 +6,7 @@ const Loginroute= require('./routes/loginRoute');
 const vendorRoute= require('./routes/vendorRoute');
 const productRoute = require('./routes/productRoute');
 const userRoute = require('./routes/userRoutes');
+const wishlistRoute = require('./routes/wishlistRoute')
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/',Loginroute);
 app.use('/vendor',vendorRoute);
 app.use('/product',productRoute);
 app.use('/user',userRoute);
+app.use('/cart',wishlistRoute);
 
 app.listen(3000,()=>{
 console.log("Connected to port 3000");

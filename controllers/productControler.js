@@ -119,4 +119,13 @@ if(vendorPresent.length>0){
         console.log(err);
     }
 }
-module.exports = { createProduct, editProduct,deleteProduct,getProduct};
+
+const getAllProducts = async(req,res)=>{
+    const products = await Product.find();
+    if(products){
+        return res.status(200).json({message:"All products retrieved",products});
+    }
+return res.status(404).json({message:'Products not retrieved'});
+}
+
+module.exports = { createProduct, editProduct,deleteProduct,getProduct,getAllProducts };

@@ -6,14 +6,9 @@ const wishlistSchema = new mongoose.Schema({
         type: String,
         required: true
     }, 
-    // vendorId:{
-    //     type:String,
-    //     required:true
-    // },
     products: [{
         product_id: String,
         quantity: Number,
-        vendorId:String
     }]
 })
 

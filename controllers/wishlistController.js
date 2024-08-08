@@ -94,7 +94,7 @@ const deleteProduct = async (req, res) => {
         if(role=='user'){
             const userFound = await Wishlist.findOne({ user_id:id });
             if (!userFound) {
-                return res.status(404).json({ message: "Product not found" });
+                return res.status(404).json({ message: "Wishlist not found" });
             }
     else{   
             if(userFound.products.length<=1){
@@ -113,7 +113,9 @@ const deleteProduct = async (req, res) => {
                 await userFound.save();
                 let initialL=userFound.products.length;
                 let finalL=filtered.length;
-    if(initialL!=finalL){
+
+
+    if(initialL==finalL){
         return res.status(200).json({message:" Product Deleted"});
     }
     else{

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Vendor = require('./vendorModel');
 
 const wishlistSchema = new mongoose.Schema({
     user_id: {

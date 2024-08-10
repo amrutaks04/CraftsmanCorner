@@ -48,3 +48,40 @@ text-decoration:none;
   background-color: black;
   color: white;
 }
+
+/* form{
+  display:flex;
+  flex-direction: column;
+}
+.login-layout{
+  display:flex;
+} */
+
+.login-layout{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}
+.login-form input{
+  margin:10px;
+}
+#name{
+  padding-left:100px;
+}
+#password{
+  padding-left:102px;
+  margin-left:25px;
+}
+.login-button{
+ margin-left:100px;
+ width:100px;
+ height:30px;
+}
+
+#name-r{
+  padding-left:100px;
+}
+#password-r{
+  padding-left:102px;
+  /* margin-left:25px; */
+}

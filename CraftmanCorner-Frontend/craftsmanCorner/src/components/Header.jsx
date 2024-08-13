@@ -1,10 +1,36 @@
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
+import axios from "axios";
+import { setList } from "../redux/wishListSlice";
 
 const Header = () => {
-    const wishList = useSelector((state) => state.wishlist.myList);
+    const wishlist = useSelector((state) => state.wishlist.myList);
     const token = useSelector((state) => state.user.token);
-    console.log('t',token)
+    const role = localStorage.getItem("role");
+
+    const dispatch = useDispatch();
+  
+    useEffect(()=>{
+        if(token){
+          getCart();
+        }
+            },[token]);
+          
+            const getCart = async()=>{
+              const res = await axios.get('http://localhost:3000/cart/getcart',
+                {
+                  headers:{
+                    Authorization: `Bearer ${token}`
+                  }
+                }
+              )
+            dispatch(setList(res.data.totalArray[0])); 
+
+            // console.log("total",res.data.totalArray[1]);
+            }
+
+
 
     return (
         <header class='header'>
@@ -14,13 +40,26 @@ const Header = () => {
             <div class='header-right'>
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/about'>About</Link></li>
                     <li><Link to='/products'>Products</Link></li>
-                    <li><Link to='/wishlist'>WishList {wishList.length}</Link></li>
-                    <li><Link to='/login'>{token?'Logout':'Login'}</Link></li>
+                    {role==='vendor'?(<li><Link to ='/product-form'>Create Product</Link></li>  ):
+                    (<li><Link to='/wishlist'>WishList {wishlist.length}</Link></li>)}
+                    {role=='vendor' && <li>Inbox</li>}
+                 
+                 {role==='vendor'?(<li><Link to='/vendorprofile'>Profile</Link></li>):(
+                    <li><Link to='/userprofile'>Profile</Link></li>
+                 )}
+                  
+                    {/* {token ? (
+                        <li><Link to='/'>Logout</Link></li>
+                    ) : (
+                        <li><Link to='/login'>Login</Link></li>
+                    )} */}
+ <li><Link to='/login'> {token?'Logout':'Login'}</Link></li>
                 </ul>
             </div>
         </header>
+        
+
     )
 
 }

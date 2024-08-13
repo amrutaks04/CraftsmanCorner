@@ -26,6 +26,7 @@ const Login = ()=>{
 
     const handleLogin= async(e)=>{
         e.preventDefault();
+
         const payload ={
             name:username,
             password:password,
@@ -39,6 +40,23 @@ try{
     dispatch(setToken(res.data.token));
 
     localStorage.setItem("token",res.data.token);
+
+    const token =res.data.token;
+
+    function parseJwt(token) {
+        if (!token) {
+          return;
+        }
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace("-", "+").replace("_", "/");
+        return JSON.parse(window.atob(base64));
+      }
+      const decodedToken= parseJwt(token);
+
+    localStorage.setItem("authId",decodedToken.authId);
+    localStorage.setItem("role",decodedToken.role);
+ 
+
     toast.success(res.data.message);
     navigate("/")
 
@@ -47,25 +65,31 @@ toast.error(error.response.data.message);
 }
 
     }
-return(
-    <div class='login-layout'>
-        <form className="login-form" onSubmit={handleLogin}>
-            <label htmlFor="name" className="username" >User Name :</label>
-            <input type='text' id="name" value={username} onChange={handleUsername}/>
-            <br/>
-            <label htmlFor="password" className='password' >Password:</label>
-            <input type='password' id="password" value={password} onChange={handlePassword}/>
-            <br/>
-            <input type='radio' id='user-role' name='role' value='user' checked={role=='user'} onChange={handleRole}/> <label htmlFor="user-role">User</label>
-<input type='radio' id='vendor-role'  name='role' value='vendor' checked={role=='vendor'} onChange={handleRole}/> <label htmlFor="vendor-role">Vendor</label>
-<input type='radio' id='admin-role' name='role' value='admin' checked={role=='admin'} onChange={handleRole}/> <label htmlFor="admin-role">Admin</label>
-<br/>
-          <button className='login-button' type='submit'>Login</button>
-            <br/>
-            <span>Haven't registered yet?</span>
-           <Link to='/register'> <span>Register</span></Link>
-        </form>
-    </div>
-)
+    return(
+        <div class='login-layout'>
+            <form className="login-form" onSubmit={handleLogin}>
+                <label htmlFor="name">User Name:</label>
+                <input type='text' id="name" value={username} onChange={handleUsername} required />
+                
+                <label htmlFor="password">Password:</label>
+                <input type='password' id="password" value={password} onChange={handlePassword} required/>
+                
+                <div className="radio-group">
+                    <input type='radio' id='user-role' name='role' value='user' checked={role==='user'} onChange={handleRole} required/> 
+                    <label htmlFor="user-role">User</label>
+                    <input type='radio' id='vendor-role' name='role' value='vendor' checked={role==='vendor'} onChange={handleRole} required/> 
+                    <label htmlFor="vendor-role">Vendor</label>
+                    <input type='radio' id='admin-role' name='role' value='admin' checked={role==='admin'} onChange={handleRole} required /> 
+                    <label htmlFor="admin-role">Admin</label>
+                </div>
+                
+                <button className='login-button' type='submit'>Login</button>
+                
+                <span>Haven't registered yet?</span>
+                <Link to='/register'><span>Register</span></Link>
+            </form>
+        </div>
+    )
+
 }
 export default Login;

@@ -2,15 +2,14 @@ const User = require('../models/userModel');
 
 
 const createUserProfile = async (req, res) => {
-    const { firstName,  lastName, phoneNo, address, email, profilePhoto, additionalInfo } = req.body;
+    const { name, phoneNo, address, email, profilePhoto, additionalInfo } = req.body;
     const role = req.role;
     const id = req.authId;
     try {
         if (role == 'user') {
             const profile = await User.create({
                 userId: id,
-                firstName,
-                lastName,
+                name,
                 phoneNo,
                 email,
                 address,
@@ -31,15 +30,14 @@ const createUserProfile = async (req, res) => {
 }
 
 const editUserProfile = async (req, res) => {
-    const { firstName,  lastName, phoneNo, address, email, profilePhoto, additionalInfo } = req.body;
+    const { name, phoneNo, address, email, profilePhoto, additionalInfo } = req.body;
     const role = req.role;
     const id = req.authId;
     try {
         if (role == 'user') {
-            const edit = await User.updateOne({userId: id }, {
+            const edit = await User.updateOne({ userId: id }, {
                 $set: {
-                    firstName,
-                    lastName,
+                    name,
                     phoneNo,
                     email,
                     address,
@@ -48,7 +46,7 @@ const editUserProfile = async (req, res) => {
                 }
             }, { new: true }
             )
-            if (edit.matchedCount > 0 && edit.modifiedCount > 0) {
+            if (edit) {
                 return res.status(200).json({ message: 'Profile updated' });
             }
             else {
@@ -61,43 +59,43 @@ const editUserProfile = async (req, res) => {
     }
 }
 
-const viewUserProfile =async(req,res)=>{
-    try{
-const id=req.authId;
-const role=req.role;
-if(role=='user'){
-const find = await User.findOne({userId:id});
-if(find){
-    return res.status(200).json({message:'Profile found',profile:find});
+const viewUserProfile = async (req, res) => {
+    try {
+        const id = req.authId;
+        const role = req.role;
+        if (role == 'user') {
+            const find = await User.findOne({ userId: id });
+            if (find) {
+                return res.status(200).json({ message: 'Profile found', profile: find });
+            }
+            else {
+                return res.status(404).json({ message: 'Profile not found' });
+            }
+        }
+        return res.status(401).json({ message: 'This is not a user' });
+    } catch (err) {
+        console.log(err);
+    }
 }
-else{
-    return res.status(404).json({message:'Profile not found'});
-}
-}
-return res.status(401).json({message:'This is not a user'});
-    }catch(err)
-{
-console.log(err);
-}}
 
-const deleteUserProfile = async(req,res)=>{
-    try{
-const id=req.authId;
-const role=req.role;
-if(role=='user'){
-  const deletes = await User.deleteOne({userId:id});
-  if(deletes.deletedCount>0){
-    return res.status(200).json({message:'Profile deleted'});
-  }
-  else{
-    return res.status(404).json({message:'Profile not deleted'});
-  }
-}
-return res.status(404).json({message:'This is not a user'});
-    }catch(err){
+const deleteUserProfile = async (req, res) => {
+    try {
+        const id = req.authId;
+        const role = req.role;
+        if (role == 'user') {
+            const deletes = await User.deleteOne({ userId: id });
+            if (deletes.deletedCount > 0) {
+                return res.status(200).json({ message: 'Profile deleted' });
+            }
+            else {
+                return res.status(404).json({ message: 'Profile not deleted' });
+            }
+        }
+        return res.status(404).json({ message: 'This is not a user' });
+    } catch (err) {
         console.log(err);
     }
 }
 
 
-module.exports = {createUserProfile,editUserProfile,viewUserProfile,deleteUserProfile} ;
+module.exports = { createUserProfile, editUserProfile, viewUserProfile, deleteUserProfile };

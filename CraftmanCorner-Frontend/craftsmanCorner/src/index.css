@@ -8,9 +8,18 @@ body{
   margin:0px;
   padding:0px;
 }
+
+/* Header */
+
 .header{
-  border:1px,solid,black
+  border:1px,solid,black;
+  background-color:black;
+  color:white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  font-size:20px;
 }
+
 .header-right{
   float:right;
 }
@@ -20,10 +29,165 @@ padding:30px;
 }
 .header-right a{
 text-decoration:none;
+color:white;
+transition: color 0.3s ease;
+}
+.header-right a:hover {
+  color: #f9a825;
 }
 .header-right,.header-left{
   display:inline-block;
 }
+
+/* login and register */
+
+ .login-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2; 
+}
+
+.register-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  /* background-color: #f2f2f2; */
+}
+
+.login-form {
+  background-color: #ffffff; 
+  padding: 40px;
+  margin-bottom: 60px;
+  border-radius: 10px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  width: 350px;
+  text-align: center;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 8px; 
+  text-align: left;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus,
+.login-form input[type="email"]:focus {
+  border-color: #ff7f50;
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 127, 80, 0.5);
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px; 
+}
+
+.radio-group label {
+  margin: 0;
+}
+
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff7f50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 24px;
+  box-sizing: border-box; 
+}
+
+.login-form button:hover {
+  background-color: #ff6347;
+}
+
+.login-form span {
+  display: inline-block;
+  margin-top: 24px;
+  color: #555;
+}
+
+.login-form a {
+  color: #ff7f50;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+/* home */
+.home-layout {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.home-img{
+  width:100%;
+  height:auto;
+  display: block;
+}
+
+.home-layout p {
+  position: absolute;
+  top:20%;
+  left:13%;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 10px;
+  width: 70%; 
+}
+
+.home-layout button {
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-layout button:hover {
+  background-color: #ff6347; 
+}
+
+/* products */
+
+
 
 .product-container{
   display:flex;
@@ -47,41 +211,10 @@ text-decoration:none;
 .product-card button:hover{
   background-color: black;
   color: white;
-}
-
-/* form{
-  display:flex;
-  flex-direction: column;
-}
-.login-layout{
-  display:flex;
-} */
-
-.login-layout{
-  display:flex;
-  flex-direction:row;
-  justify-content: space-around;
-}
-.login-form input{
-  margin:10px;
-}
-#name{
-  padding-left:100px;
-}
-#password{
-  padding-left:102px;
-  margin-left:25px;
-}
-.login-button{
- margin-left:100px;
- width:100px;
- height:30px;
-}
-
-#name-r{
-  padding-left:100px;
-}
-#password-r{
-  padding-left:102px;
-  /* margin-left:25px; */
+} 
+.product-card img {
+  max-width: 60%;
+  width:90%;
+  border-radius: 8px;
+  margin-bottom: 16px;
 }

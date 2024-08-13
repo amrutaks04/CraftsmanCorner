@@ -6,7 +6,8 @@ const Loginroute= require('./routes/loginRoute');
 const vendorRoute= require('./routes/vendorRoute');
 const productRoute = require('./routes/productRoute');
 const userRoute = require('./routes/userRoutes');
-const wishlistRoute = require('./routes/wishlistRoute')
+const wishlistRoute = require('./routes/wishlistRoute');
+const orderRoute = require('./routes/orderRoute');
 
 
 const app = express();
@@ -25,6 +26,9 @@ app.use('/vendor',vendorRoute);
 app.use('/product',productRoute);
 app.use('/user',userRoute);
 app.use('/cart',wishlistRoute);
+app.use('/order',orderRoute);
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{

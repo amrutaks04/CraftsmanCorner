@@ -1,4 +1,3 @@
-import {products} from '../constants';
 import ProductCard from './ProductCard';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
@@ -13,7 +12,7 @@ const [productList,setProductList] = useState([]);
     },[]);
 
     const getProducts = async()=>{
-        const res = await axios.get('https://craftsmancorner-1.onrender.com/product/getAllProducts');
+        const res = await axios.get('http://localhost:3000/product/getAllProducts');
         setProductList(res.data.products);
     }
 return (

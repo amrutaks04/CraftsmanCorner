@@ -42,20 +42,17 @@ const Register = () => {
     return (
         <div class='register-layout'>
             <form className="login-form" onSubmit={handleRegister}>
-                <label htmlFor="name" className="username">User Name :</label>
+                <label htmlFor="name" className="username">User Name:</label>
                 <input type='text' id="name-r" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <br />
                 <label htmlFor="password" className='password'>Password:</label>
                 <input type='password' id='password-r' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <br />
-                <label htmlFor="email" className='email' value={email} >Email</label>
+                <label htmlFor="email" className='email' value={email} >Email:</label>
                 <input type='email' id='email-r' onChange={(e) => setEmail(e.target.value)} />
-                <div className="role-radio">
+                <div className="radio-group">
                     <input type='radio' id='user-role' name='role' value='user' checked={role === 'user'} onChange={(e) => setRole(e.target.value)} /> <label htmlFor="user-role">User</label>
                     <input type='radio' id='vendor-role' name='role' value='vendor' checked={role === 'vendor'} onChange={(e) => setRole(e.target.value)} /> <label htmlFor="vendor-role">Vendor</label>
                     <input type='radio' id='admin-role' name='role' value='admin' checked={role === 'admin'} onChange={(e) => setRole(e.target.value)} /> <label htmlFor="admin-role">Admin</label>
                 </div>
-                <br />
                 {role=='vendor' && (
                     <>
                       <label htmlFor="vendorName">Vendor Name:</label>

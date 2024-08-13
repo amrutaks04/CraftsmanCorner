@@ -19,6 +19,9 @@ const productSchema = new mongoose.Schema({
     },vendorId:{
         type:String,
         required:true
+    },vendorName:{
+        type:String,
+        required:true
     }
 })
 

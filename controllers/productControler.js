@@ -1,4 +1,5 @@
 const Product = require('../models/productModel');
+const Login = require('../models/loginModel');
 const { v4: uuidv4 } = require('uuid');
 
 const createProduct = async (req, res) => {
@@ -7,6 +8,9 @@ const createProduct = async (req, res) => {
     const role = req.role;
     try {
         if (role == 'vendor') {
+            const fetchVendor = await Login.findOne({id:id});
+            console.log('vendorName',fetchVendor.vendorName);
+
             const product = await Product.create({
                 vendorId: id,
                 productId: uuidv4(),
@@ -14,8 +18,11 @@ const createProduct = async (req, res) => {
                 productDes,
                 category,
                 price,
-                image
+                image,
+                vendorName:fetchVendor.vendorName
             })
+
+        
             if (product) {
                 return res.status(200).json({ message: 'Product created' });
             }
@@ -49,8 +56,8 @@ const editProduct = async (req, res) => {
                     }
                 }, { new: true })
 
-                if (edit.matchedCount > 0 && edit.modifiedCount > 0) {
-                    return res.status(200).json({ message: 'Product edited' });
+                if (edit) {
+                    return res.status(200).json({ message: 'Product edited'});
                 }
                 else {
                     return res.status(404).json({ message: 'Product not edited' });
@@ -99,19 +106,24 @@ const vendorPresent =await Product.find({vendorId:id});
 if(vendorPresent.length>0){
     const productArr = vendorPresent.map((i)=>{
         return({
+            productId:i.productId,
             productName:i.productName,
             productDes:i.productDes,
             price:i.price,
-            category:i.category
+            category:i.category,
+            image:i.image,
         })
     })
+    console.log(productArr)
+
         return res.status(200).json({message:"Products found",products:productArr});
 }
     else{
         return res.status(404).json({message:'Products not found'});
     }
 
-} else{
+}
+ else{
     return res.status(404).json({message:'This is not a vendor'});
 
 }

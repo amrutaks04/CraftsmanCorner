@@ -30,7 +30,11 @@ const Header = () => {
             // console.log("total",res.data.totalArray[1]);
             }
 
-
+const remove=()=>{
+localStorage.removeItem("token");
+localStorage.removeItem("role");
+localStorage.removeItem("authId");
+}
 
     return (
         <header class='header'>
@@ -43,18 +47,17 @@ const Header = () => {
                     <li><Link to='/products'>Products</Link></li>
                     {role==='vendor'?(<li><Link to ='/product-form'>Create Product</Link></li>  ):
                     (<li><Link to='/wishlist'>WishList {wishlist.length}</Link></li>)}
-                    {role=='vendor' && <li>Inbox</li>}
+                    {/* {role=='vendor' && <li>Inbox</li>} */}
                  
                  {role==='vendor'?(<li><Link to='/vendorprofile'>Profile</Link></li>):(
                     <li><Link to='/userprofile'>Profile</Link></li>
                  )}
                   
-                    {/* {token ? (
-                        <li><Link to='/'>Logout</Link></li>
+                    {token ? (
+                        <li><Link to='/login'><button onClick={remove} id="logout-button">Logout</button></Link></li>
                     ) : (
                         <li><Link to='/login'>Login</Link></li>
-                    )} */}
- <li><Link to='/login'> {token?'Logout':'Login'}</Link></li>
+                    )}
                 </ul>
             </div>
         </header>

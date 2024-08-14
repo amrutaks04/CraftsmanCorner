@@ -75,16 +75,16 @@ setProfile(res.data.profile);
     return (
         <>
            {profile ? (
-                <div>
+                <div className='user-info'>
                     <h2>{profile.name}'s Profile</h2>
-                    <p>Name:{profile.name}</p>
-                    <p>Address: {profile.address}</p>
-                    <p>Phone: {profile.phoneNo}</p>
-                    <p>Email: {profile.email}</p>
-                    <p>Additional Info: {profile.additionalInfo}</p>
+                    <p><b>Name:</b>{profile.name}</p>
+                    <p><b>Address:</b> {profile.address}</p>
+                    <p><b>Phone:</b> {profile.phoneNo}</p>
+                    <p><b>Email:</b> {profile.email}</p>
+                    {/* <p>Additional Info: {profile.additionalInfo}</p> */}
                 </div>):(
-            <div className="vendorProfile">
-                <form className='vendorForm' onSubmit={createProfile}>
+            <div className="userProfile">
+                <form className='userForm' onSubmit={createProfile}>
                     <label htmlFor="fname"> Name:</label>
                     <input type='text' id='fname' value={name} onChange={(e) => setName(e.target.value)} />
                     <label htmlFor="address">Address:</label>
@@ -95,8 +95,8 @@ setProfile(res.data.profile);
                     <input type='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     <label htmlFor="photo">Profile Photo:</label>
                     <input type='text' id='photo' value={photo} onChange={(e) => setPhoto(e.target.value)} />
-                    <label htmlFor="info">Additional Info:</label>
-                    <input type='textarea' id='info' value={addInfo} onChange={(e) => setAddinfo(e.target.value)} />
+                    {/* <label htmlFor="info">Additional Info:</label>
+                    <input type='textarea' id='info' value={addInfo} onChange={(e) => setAddinfo(e.target.value)} /> */}
                     <button className='profile-create-button' type='submit'>Create Profile</button>
 
                 </form>

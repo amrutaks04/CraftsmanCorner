@@ -102,13 +102,15 @@ if(res.status===200){
                 {product.length > 0 ? (
                     product.map((i) => (
                         <div key={i.productId}>
-                            <h4>{i.productName}</h4>
-                            <p>{i.productDes}</p>
-                            <div>{i.price}</div>
-                            <div>{i.category}</div>
+                            <h4>Name:{i.productName}</h4>
+                            <p>Description:{i.productDes}</p>
+                            <div>Rs.{i.price}</div>
+                            <div>Category:{i.category}</div>
                             <img src={i.image} alt={i.productName} />
-                            <button onClick={() => editProduct(i)}>Edit</button>
-                            <button onClick={()=>handleDelete(i.productId)}>Delete</button>
+                            <span>
+                            <button onClick={() => editProduct(i)} id='edit-button'>Edit</button>
+                            <button onClick={()=>handleDelete(i.productId)} id='delete-button'>Delete</button>
+                            </span>
                         </div>
                     ))
                 ) : (<p>No products found</p>)}

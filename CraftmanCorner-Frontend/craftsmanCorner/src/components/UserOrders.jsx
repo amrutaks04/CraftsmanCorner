@@ -32,18 +32,15 @@ const UserOrders = () => {
       ) : (
         orders.map((order) => (
           <div key={order.order_id} className="order-card">
-            <p>Total Amount: Rs.{order.totAmount}</p>
-            <p>Order Date: {new Date(order.orderDate).toLocaleDateString()}</p>
-            <p>Estimated Delivery: {new Date(order.estDelivDate).toLocaleDateString()}</p>
+            <p><b>Total Amount:</b> Rs.{order.totAmount}</p>
+            <p><b>Order Date:</b> {new Date(order.orderDate).toLocaleDateString()}</p>
+            <p><b>Estimated Delivery:</b> {new Date(order.estDelivDate).toLocaleDateString()}</p>
             <h4>Products:</h4>
             <ul>
               {order.products.map((product, index) => (
                 <li key={index}>
                   <img src={product.image} alt={product.title} />
-                  <p>Title: {product.title}</p>
-                  <p>Description: {product.description}</p>
-                  <p>Price: Rs.{product.price}</p>
-                  <p>Quantity: {product.quantity}</p>
+                  <p><b>Title:</b> {product.title}</p>
                 </li>
               ))}
             </ul>

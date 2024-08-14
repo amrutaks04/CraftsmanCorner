@@ -83,16 +83,17 @@ setProfile(res.data.profile);
     return (
         <>
            {profile ? (
-                <div>
+                <div className='vendor-profile'>
                     <h2>{profile.vendorName}'s Profile</h2>
-                    <p>Address: {profile.vendorAddress}</p>
-                    <p>Phone: {profile.phoneNo}</p>
-                    <p>Email: {profile.email}</p>
-                    <p>Social Media: {profile.socialMediaLink}</p>
-                    <p>Business Description: {profile.businessDescription}</p>
-                    <p>Business Type: {profile.businessType}</p>
-                    <p>Years of Experience: {profile.yearsOfExperience}</p>
-                    <p>Additional Info: {profile.additionalInfo}</p>
+                    <p><b>Name:</b>{profile.vendorName}</p>
+                    <p><b>Address: </b>{profile.vendorAddress}</p>
+                    <p><b>Phone:</b> {profile.phoneNo}</p>
+                    <p><b>Email:</b> {profile.email}</p>
+                    <p><b>Social Media:</b><a href={profile.socialMediaLink}>{profile.socialMediaLink}</a></p>
+                    <p><b>Business Description:</b> {profile.businessDescription}</p>
+                    <p><b>Business Type:</b>{profile.businessType}</p>
+                    <p><b>Years of Experience: </b>{profile.yearsOfExperience}</p>
+                    {/* <p>Additional Info: {profile.additionalInfo}</p> */}
                 </div>):(
             <div className="vendorProfile">
                 <form className='vendorForm' onSubmit={createProfile}>
@@ -114,8 +115,8 @@ setProfile(res.data.profile);
                     <input type='number' id='experience' value={exp} onChange={(e) => setExp(e.target.value)} />
                     <label htmlFor="photo">Profile Photo:</label>
                     <input type='text' id='photo' value={photo} onChange={(e) => setPhoto(e.target.value)} />
-                    <label htmlFor="info">Additional Info:</label>
-                    <input type='textarea' id='info' value={addInfo} onChange={(e) => setAddinfo(e.target.value)} />
+                    {/* <label htmlFor="info">Additional Info:</label>
+                    <input type='textarea' id='info' value={addInfo} onChange={(e) => setAddinfo(e.target.value)} /> */}
                     <button className='profile-create-button' type='submit'>Create Profile</button>
 
                 </form>

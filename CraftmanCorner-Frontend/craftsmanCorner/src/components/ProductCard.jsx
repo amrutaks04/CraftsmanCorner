@@ -8,6 +8,7 @@ const ProductCard =(props)=>{
 const cartItems = useSelector((state)=>state.wishlist.myList);
 const isInCart = cartItems.find((el)=>el.productId===props.item.productId);
 const token =useSelector((state)=>state.user.token);
+const role = localStorage.getItem("role");
 
     const dispatch = useDispatch();
     console.log("item",props.item);
@@ -37,11 +38,14 @@ const token =useSelector((state)=>state.user.token);
 <img src={image}/>
 <h3>{productName}</h3>
 <p>{productDes}</p>
-<div>{category}</div>
-<div>Rs.{price}</div>
-<div>{vendorName}</div>
-{isInCart?( <Link to='/wishlist'><button>Go to Cart</button></Link>):
-        ( <button onClick={handleAdd}>Add to Cart</button> )}
+<div className="pro-category"><b>Category:</b>{category}</div>
+<div className="pro-price">Rs.{price}</div>
+<div id='vendorName-div'><span><b>{vendorName} </b></span>'s Product</div>
+{role==='user' && (
+isInCart?( <Link to='/wishlist'><button className="go-to-cart-button">Go to Cart</button></Link>):
+    ( <button onClick={handleAdd}>Add to Cart</button> )
+)}
+
         </div>
     )
     }

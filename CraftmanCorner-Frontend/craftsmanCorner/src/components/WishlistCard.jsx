@@ -77,12 +77,13 @@ if(quantity<=1){
                 <img src={props.item.image} />   
                 </div>
                <div class='cart-content'>
-               <p>{props.item.productName}</p>
-               <p>{props.item.vendorName}</p>
+               <p className='separate'>{props.item.productName}</p>
+               <div className='quantity-controls'>
                 <button onClick={incrementItem}>+</button>&nbsp;
                 {quantity||1}&nbsp;
                 <button onClick={decrementItem}>-</button>
-                <p>{props.item.price}</p>
+                <p className='separate'>Rs.{props.item.price}</p>
+               </div>
                </div>
         </div>
 </div>

@@ -66,11 +66,11 @@ const viewOrder = async (req, res) => {
                     if (product) {
                         orderArray.push(
                             {
-                                title: product.title,
-                                description: product.description,
+                                title: product.productName,
+                                description: product.productDes,
                                 image: product.image,
                                 price: product.price,
-                                quantity: order.quantity,
+                                totalPrice: order.totAmount,
                             }
                         )
                     }
@@ -91,4 +91,61 @@ return res.status(401).json({message:'This is not a user'});
         console.log(err);
     }
 }
-module.exports = { placeOrder, viewOrder };
+
+const vendorViewOrder = async(req,res)=>{
+    try{
+        const id = req.authId;
+        const role = req.role;
+        if(role==='vendor'){
+const vendorPro = await Product.find({vendorId:id})
+if(vendorPro.length ===0){
+    return res.status(404).json({message:'No products found for this vendor'});
+}
+const vendorProId = vendorPro.map((products)=>products.productId);
+const orderPresent = await Order.find({'products.product_id':{$in:vendorProId}});
+
+if(orderPresent.length === 0){
+    return res.status(404).json({message:'No orders found for this vendor\'s products'});
+}
+
+let finalArray = [];
+for (let order of orderPresent) {
+    let orderArray = [];
+    for (let proId of order.products) {
+        if (vendorProId.includes(proId.product_id)) {
+            const product = vendorPro.find(prod => prod.productId === proId.product_id);
+            if (product) {
+                orderArray.push({
+                    title: product.productName,
+                    description: product.productDes,
+                    image: product.image,
+                    quantity: proId.quantity,
+                    price: product.price,
+                    totalPrice: product.price * proId.quantity
+                });
+            }
+        }
+    }
+    finalArray.push({
+        products: orderArray,
+        totAmount: order.totAmount,
+        orderDate: order.orderDate,
+        estDelivDate: order.estDelivDate,
+        order_id: order.order_id,
+        customerName: order.custName,
+        customerPhone: order.custPhno,
+        customerAddress: order.custAddress
+    });
+}
+
+return res.status(200).json(finalArray);
+}
+return res.status(401).json({message:'This is not a vendor'});
+
+}
+catch(error){
+console.log(error);
+    }
+}
+
+module.exports = { placeOrder, viewOrder,vendorViewOrder };

@@ -10,6 +10,7 @@ import ProductForm from './components/ProductForm';
 import VendorProfile from './components/VendorProfile';
 import WishList from './components/Wishlist';
 import UserProfile from './components/UserProfile';
+import Inbox from './components/Inbox';
 
 const App =()=>{
   return(
@@ -24,7 +25,7 @@ const App =()=>{
     <Route path='/wishlist' element={<WishList/>}/>
     <Route path='/vendorprofile' element={<VendorProfile/>}/>
     <Route path='/userprofile' element={<UserProfile/>}/>
-    <Route path='/inbox' element={<h2>Inbox</h2>}/>
+    <Route path='/inbox' element={<Inbox/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/product-form' element={<ProductForm/>}/>
 

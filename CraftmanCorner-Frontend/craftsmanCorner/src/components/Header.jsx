@@ -47,7 +47,7 @@ localStorage.removeItem("authId");
                     <li><Link to='/products'>Products</Link></li>
                     {role==='vendor'?(<li><Link to ='/product-form'>Create Product</Link></li>  ):
                     (<li><Link to='/wishlist'>WishList {wishlist.length}</Link></li>)}
-                    {/* {role=='vendor' && <li>Inbox</li>} */}
+                    {role=='vendor' && <li><Link to='/inbox'>Inbox</Link></li>}
                  
                  {role==='vendor'?(<li><Link to='/vendorprofile'>Profile</Link></li>):(
                     <li><Link to='/userprofile'>Profile</Link></li>

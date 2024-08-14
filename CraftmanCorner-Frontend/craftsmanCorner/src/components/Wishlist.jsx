@@ -26,7 +26,7 @@ const WishList = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/order/createOrders",
+        "https://craftsmancorner-1.onrender.com/order/createOrders",
         payload,
         {
           headers: {

@@ -12,7 +12,7 @@ const [productList,setProductList] = useState([]);
     },[]);
 
     const getProducts = async()=>{
-        const res = await axios.get('http://localhost:3000/product/getAllProducts');
+        const res = await axios.get('https://craftsmancorner-1.onrender.com/product/getAllProducts');
         setProductList(res.data.products);
     }
 return (

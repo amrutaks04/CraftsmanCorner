@@ -48,7 +48,7 @@ const ProductForm = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:3000/product/createProduct',
+            const res = await axios.post('https://craftsmancorner-1.onrender.com/product/createProduct',
                 payload,{
                     headers:{
                         Authorization:`Bearer ${token}`

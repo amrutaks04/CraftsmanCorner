@@ -29,7 +29,7 @@ const Register = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:3000/register',
+            const res = await axios.post('https://craftsmancorner-1.onrender.com/register',
                 payload)
 
             toast.success(res.data.message)

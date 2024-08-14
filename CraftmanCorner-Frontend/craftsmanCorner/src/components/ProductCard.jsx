@@ -22,7 +22,7 @@ const role = localStorage.getItem("role");
             }
         }
 
-        const res= await axios.post('http://localhost:3000/cart/addcart',
+        const res= await axios.post('https://craftsmancorner-1.onrender.com/cart/addcart',
             payload,{
                 headers:{
                     Authorization:`Bearer ${token}`

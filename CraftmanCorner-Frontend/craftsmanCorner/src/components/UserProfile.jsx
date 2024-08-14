@@ -41,7 +41,7 @@ const UserProfile = () => {
         }
 
         try {
-            const res = await axios.post("http://localhost:3000/user/createUserProfile", payload, {
+            const res = await axios.post("https://craftsmancorner-1.onrender.com/user/createUserProfile", payload, {
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
@@ -58,7 +58,7 @@ const UserProfile = () => {
 
     const getProfile = async (e) => {
         try {
-            const res = await axios.get("http://localhost:3000/user/viewUserProfile",
+            const res = await axios.get("https://craftsmancorner-1.onrender.com/user/viewUserProfile",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

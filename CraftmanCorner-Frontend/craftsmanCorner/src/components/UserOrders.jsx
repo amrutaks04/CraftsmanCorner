@@ -13,7 +13,7 @@ const UserOrders = () => {
 
   const fetchOrder = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/order/getOrders', {
+      const res = await axios.get('https://craftsmancorner-1.onrender.com/order/getOrders', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

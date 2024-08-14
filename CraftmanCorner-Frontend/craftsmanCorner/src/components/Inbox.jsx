@@ -13,7 +13,7 @@ const Inbox =()=>{
     
       const fetchOrder = async () => {
         try {
-          const res = await axios.get('http://localhost:3000/order/getVendorOrders', {
+          const res = await axios.get('https://craftsmancorner-1.onrender.com/order/getVendorOrders', {
             headers: {
               Authorization: `Bearer ${token}`,
             },

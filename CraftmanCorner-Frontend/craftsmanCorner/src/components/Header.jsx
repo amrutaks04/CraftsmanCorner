@@ -18,7 +18,7 @@ const Header = () => {
             },[token]);
           
             const getCart = async()=>{
-              const res = await axios.get('http://localhost:3000/cart/getcart',
+              const res = await axios.get('https://craftsmancorner-1.onrender.com/cart/getcart',
                 {
                   headers:{
                     Authorization: `Bearer ${token}`

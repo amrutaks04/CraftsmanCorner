@@ -21,7 +21,7 @@ const payload ={
     }
 }
 try{
-    const res =  await axios.post("http://localhost:3000/cart/addcart",
+    const res =  await axios.post("https://craftsmancorner-1.onrender.com/cart/addcart",
         payload,
         {
             headers:{Authorization:`Bearer ${token}`},
@@ -45,7 +45,7 @@ try{
 
         try{
 if(quantity<=1){
-    const res = await axios.delete(`http://localhost:3000/cart/deleteProCart/${props.item.productId}`,
+    const res = await axios.delete(`https://craftsmancorner-1.onrender.com/cart/deleteProCart/${props.item.productId}`,
         {
             headers:{
                 Authorization:`Bearer ${token}`
@@ -54,7 +54,7 @@ if(quantity<=1){
     )
         toast.success('Item removed from wishlist');
 }else{
-    const res =  await axios.post("http://localhost:3000/cart/addcart",
+    const res =  await axios.post("https://craftsmancorner-1.onrender.com/cart/addcart",
         payload,
         {
             headers:{Authorization:`Bearer ${token}`},

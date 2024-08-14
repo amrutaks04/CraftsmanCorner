@@ -24,7 +24,7 @@ const VendorProduct = () => {
 
     const getProducts = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/product/getProduct',
+            const res = await axios.get('https://craftsmancorner-1.onrender.com/product/getProduct',
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -62,7 +62,7 @@ const VendorProduct = () => {
         const productId =currentProduct.productId;
 
         try {
-            const res = await axios.put(`http://localhost:3000/product/editProduct/${productId}`,
+            const res = await axios.put(`https://craftsmancorner-1.onrender.com/product/editProduct/${productId}`,
                 payload, {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -81,7 +81,7 @@ const VendorProduct = () => {
 
     const handleDelete=async(productId)=>{
         try{
-const res = await axios.delete(`http://localhost:3000/product/deleteProduct/${productId}`,{
+const res = await axios.delete(`https://craftsmancorner-1.onrender.com/product/deleteProduct/${productId}`,{
     headers:{
         Authorization:`Bearer ${token}`
     }

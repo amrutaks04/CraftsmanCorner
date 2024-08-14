@@ -49,7 +49,7 @@ const VendorProfile = () => {
         }
 
         try {
-            const res = await axios.post("http://localhost:3000/vendor/createVendorProfile", payload, {
+            const res = await axios.post("https://craftsmancorner-1.onrender.com/vendor/createVendorProfile", payload, {
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
@@ -66,7 +66,7 @@ const VendorProfile = () => {
 
     const getProfile = async (e) => {
         try {
-            const res = await axios.get("http://localhost:3000/vendor/viewVendorProfile",
+            const res = await axios.get("https://craftsmancorner-1.onrender.com/vendor/viewVendorProfile",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

@@ -41,7 +41,7 @@ const role = localStorage.getItem("role");
 <div className="pro-category"><b>Category:</b>{category}</div>
 <div className="pro-price">Rs.{price}</div>
 <div id='vendorName-div'><span><b>{vendorName} </b></span>'s Product</div>
-{role!=='user' && (
+{role!=='vendor' && (
 isInCart?( <Link to='/wishlist'><button className="go-to-cart-button">Go to Cart</button></Link>):
     ( <button onClick={handleAdd}>Add to Cart</button> )
 )}
